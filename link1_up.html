@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Auto Audio Player</title>
+  <meta charset="UTF-8">
+  <title>Audio Trigger</title>
 </head>
 <body>
-<script>
-  // Беремо параметр ?file=...
-  const params = new URLSearchParams(window.location.search);
-  if (params.has("file")) {
-    const url = params.get("file");
-    const audio = new Audio(url);
-    audio.play();
-  }
-</script>
+  <audio id="player" src="https://upcdn.io/223k2m7/raw/link1_up.wav"></audio>
+
+  <script>
+    // Автоматично грає при завантаженні сторінки
+    window.onload = () => {
+      document.getElementById('player').play();
+    };
+
+    // Додатково: слухає запити через URL параметр ?play=1
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("play") === "1") {
+      document.getElementById('player').play();
+    }
+  </script>
 </body>
 </html>
